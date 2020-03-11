@@ -18,9 +18,8 @@
 
       <q-btn color="primary" label="Submit" @click="authenticate"/>
 
-      <div>{{ jwt }}</div>
-      <div>{{ userData }}</div>
-      <div>{{ test }}</div>
+      <div>{{ $store.state.jwt }}</div>
+      <div>{{ $store.state.userData }}</div>
 
     </div>
   </div>
@@ -29,8 +28,11 @@
 </template>
 
 <script>
+import store from '../store/store'
+
 export default {
   name: 'PageIndex',
+  store,
   data () {
     return {
       username: '',
@@ -42,16 +44,21 @@ export default {
   },
   methods: {
     authenticate () {
+      console.log('authenticate ran')
       this.$axios.post('https://demo.inleague.io/api/v1/authenticate',
         {
           username: this.username,
           password: this.password
         })
         .then((response) => {
-          this.jwt = response.data.data.jwt
-          this.userData = response.data.data.userData
+          console.log('got by', response)
+          store.commit('addUserData', { jwt: response.data.data.jwt, userData: response.data.data.userData })
+          this.$router.push('home')
+          // this.jwt = response.data.data.jwt
+          // this.userData = response.data.data.userData
         })
         .catch((response) => {
+          console.log('been caught', response)
           this.userData = response
         })
     }
