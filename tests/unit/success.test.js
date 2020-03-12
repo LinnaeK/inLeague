@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import  MainLayout from './MainLayout'
+import  MainLayout from '../..src/Layout/MainLayout'
 
 describe('Main Layout ', () => {
   test('includes a header', () => {
