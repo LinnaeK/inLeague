@@ -1,13 +1,11 @@
 {
   "name": "inleague",
   "version": "0.0.1",
-  "description": "A Quasar Framework app",
-  "productName": "Quasar inLeague",
-  "cordovaId": "org.cordova.quasar.app",
-  "capacitorId": "",
-  "author": "Linnae",
   "private": true,
+  "description": "A Quasar Framework app",
+  "author": "Linnae",
   "scripts": {
+    "test:unit": "vue-cli-service test:unit",
     "lint": "eslint --ext .js,.vue src",
     "test": "jest"
   },
@@ -23,6 +21,8 @@
   },
   "devDependencies": {
     "@quasar/app": "^1.0.0",
+    "@vue/cli-plugin-unit-jest": "^4.2.3",
+    "@vue/test-utils": "1.0.0-beta.31",
     "babel-eslint": "^10.0.1",
     "eslint": "^6.8.0",
     "eslint-config-standard": "^14.1.0",
@@ -33,17 +33,9 @@
     "eslint-plugin-standard": "^4.0.0",
     "eslint-plugin-vue": "^6.1.2"
   },
-  "engines": {
-    "node": ">= 10.18.1",
-    "npm": ">= 6.13.4",
-    "yarn": ">= 1.21.1"
-  },
   "browserslist": [
     "last 1 version, not dead, ie >= 11"
   ],
-  "resolutions": {
-    "@babel/parser": "7.7.5"
-  },
   "jest": {
     "moduleNameMapper": {
       "^vue$": "vue/dist/vue.common.js"
@@ -55,6 +47,18 @@
     "transform": {
       "^.+\\.js$": "<rootDir>/node_modules/babel-jest",
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
-    }
+    },
+    "preset": "@vue/cli-plugin-unit-jest/presets/no-babel"
+  },
+  "capacitorId": "",
+  "cordovaId": "org.cordova.quasar.app",
+  "engines": {
+    "node": ">= 10.18.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
+  },
+  "productName": "Quasar inLeague",
+  "resolutions": {
+    "@babel/parser": "7.7.5"
   }
 }
