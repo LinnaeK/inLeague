@@ -3,7 +3,9 @@
     <q-header>
       <q-toolbar>
         <q-toolbar-title>
-          inLeague Login
+          <router-link to="/" exact>
+            inLeague Login
+          </router-link>
         </q-toolbar-title>
       </q-toolbar>
     </q-header>

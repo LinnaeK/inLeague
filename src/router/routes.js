@@ -5,7 +5,9 @@ const routes = [
     component: () => import('layouts/MainLayout.vue'),
     children: [
       { path: '', component: () => import('pages/Index.vue') },
-      { path: 'home', component: () => import('pages/LoggedIn.vue') }
+      { path: 'home', component: () => import('pages/LoggedIn.vue') },
+      { path: 'error', component: () => import('pages/Error.vue') },
+      { path: 'connectionerror', component: () => import('pages/ConnectionError.vue') }
     ]
   }
 ]
