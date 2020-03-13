@@ -1,11 +1,11 @@
 {
   "@quasar/testing": {
-    "harnesses": []
+    "harnesses": [
+      "unit-jest"
+    ]
   },
   "@quasar/testing-unit-jest": {
-    "babel": false,
-    "options": [
-      "wallabyjs"
-    ]
+    "babel": "babelrc",
+    "options": []
   }
 }
