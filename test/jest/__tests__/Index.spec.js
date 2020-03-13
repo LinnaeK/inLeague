@@ -40,15 +40,5 @@ describe('Mount Index', () => {
     expect(wrapper.methods.authenticate.toBeCalled())
   })
 
-//   it('sets index state to username input values', async () => {
-//     wrapper.find("[data-username]").setValue("alice")
-//     await wrapper.vm.$nextTick()
-//     expect(wrapper.vm.username.toBe("alice"))
-//   })
 
-//   it('sets index state to password input values', async () => {
-//     wrapper.find("[data-password]").setValue("1234")
-//     await wrapper.vm.$nextTick()
-//     expect(vm.password.toBe("1234"))
-//   })
 })
