@@ -40,5 +40,5 @@ describe('Mount Index', () => {
     expect(wrapper.methods.authenticate.toBeCalled())
   })
 
-
+ 
 })
