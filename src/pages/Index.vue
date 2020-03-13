@@ -5,7 +5,7 @@
     <div class="q-gutter-y-md column" style="max-width: 800px">
 
       <div class="form-group" :class="{ 'form-group--error': $v.username.$error }">
-    <q-input color="primary" filled label="Username" class="form__input" v-model.trim="$v.username.$model">
+    <q-input color="primary" filled label="Username" class="form__input" v-model.trim="$v.username.$model" data-username>
         <template v-if="username" v-slot:append>
           <q-icon name="cancel" @click.stop="username = null" class="cursor-pointer" />
         </template>
@@ -17,7 +17,7 @@
       </div>
 
       <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
-      <q-input color="primary" filled v-model="password" label="Password" class="form__input" v-model.trim="$v.password.$model">
+      <q-input color="primary" filled v-model="password" label="Password" class="form__input" v-model.trim="$v.password.$model" data-input>
         <template v-if="password" v-slot:append>
           <q-icon name="cancel" @click.stop="password = null" class="cursor-pointer" />
         </template>
