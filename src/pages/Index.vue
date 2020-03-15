@@ -72,22 +72,26 @@ export default {
       'authenticate'
     ]),
     callAuthenticate: function () {
-      store.dispatch('authenticate', {
-        username: this.username,
-        password: this.password,
-        errors: this.errors
-      })
-        .then(response => {
-          this.$router.push('home')
+      this.errors = this.$v.$anyError
+      console.log('in callAuthenticate', this.error)
+      if (!this.errors) {
+        store.dispatch('authenticate', {
+          username: this.username,
+          password: this.password,
+          error: this.error
         })
-        .catch(response => {
-          console.log('in catch', store.getters.status)
-          if (store.getters.status && store.getters.status < 500) {
-            this.$router.push('error')
-          } else {
-            this.$router.push('connectionerror')
-          }
-        })
+          .then(response => {
+            this.$router.push('home')
+          })
+          .catch(response => {
+            console.log('in catch', store.getters.status)
+            if (store.getters.status && store.getters.status < 500) {
+              this.$router.push('error')
+            } else {
+              this.$router.push('connectionerror')
+            }
+          })
+      }
     }
   }
 }

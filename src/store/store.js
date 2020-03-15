@@ -42,6 +42,7 @@ const store = new Vuex.Store({
   },
   actions: {
     authenticate ({ commit, state }, payload) {
+      // console.log(payload)
       console.log('authenticate ran')
       return new Promise(
         (resolve, reject) => {
