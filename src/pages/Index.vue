@@ -31,7 +31,7 @@
         <div class="error" v-if="!$v.password.hasNumber">Password must contain at least 1 number</div>
       </div>
 
-      <q-btn color="primary" label="Submit" @click="authenticate"/>
+      <q-btn color="primary" label="Submit" @click="callAuthenticate" data-btn/>
 
     </div>
   </div>
@@ -43,6 +43,7 @@
 import store from '../store/store'
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import { hasLetter, hasNumber } from '../validators'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'PageIndex',
@@ -67,37 +68,26 @@ export default {
     }
   },
   methods: {
-    authenticate () {
-      console.log(this.$v.$anyError)
-      this.errors = this.$v.$anyError
-      console.log('authenticate ran')
-      if (!this.errors) {
-        this.$axios.post('https://demo.inleague.io/api/v1/authenticate',
-          {
-            username: this.username,
-            password: this.password
-          })
-          .then((response) => {
-            console.log('got by', response)
-            store.commit('addUserData', { jwt: response.data.data.jwt, userData: response.data.data.userData })
-            this.$router.push('home')
-            // this.jwt = response.data.data.jwt
-            // this.userData = response.data.data.userData
-          })
-          .catch((error) => {
-            if (error.response && error.response.status < 500) {
-              console.log('less than 500', error.response.data.messages)
-              store.commit('addError', error.response)
-              this.$router.push('error')
-            } else {
-              if (error.data) {
-                store.commit('addError', error)
-              }
-              console.log('500+ error', JSON.stringify(error))
-              this.$router.push('connectionerror')
-            }
-          })
-      }
+    ...mapActions([
+      'authenticate'
+    ]),
+    callAuthenticate: function () {
+      store.dispatch('authenticate', {
+        username: this.username,
+        password: this.password,
+        errors: this.errors
+      })
+        .then(response => {
+          this.$router.push('home')
+        })
+        .catch(response => {
+          console.log('in catch', store.getters.status)
+          if (store.getters.status && store.getters.status < 500) {
+            this.$router.push('error')
+          } else {
+            this.$router.push('connectionerror')
+          }
+        })
     }
   }
 }
