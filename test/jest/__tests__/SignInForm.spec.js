@@ -5,12 +5,13 @@
 
 import Vue from "vue";
 import Vuelidate from "vuelidate";
+import flushPromises from "flush-promises"
 import VueRouter from 'vue-router'
+// import sinon from 'sinon'
 
 Vue.use(Vuelidate);
 import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
-import Index from '../../../src/pages/Index'
-import MainLayout from '../../../src/layouts/MainLayout'
+import SignInForm from '../../../src/components/SignInForm'
 import * as All from 'quasar'
 // import langEn from 'quasar/lang/en-us' // change to any language you wish! => this breaks wallaby :(
 const { Quasar, date } = All
@@ -27,23 +28,16 @@ describe('Mount Quasar', () => {
   // let mockedAuthenticate = jest.fn()
   // Index.methods.authenticate = mockedAuthenticate
   const localVue = createLocalVue()
-  localVue.use(VueRouter)
   localVue.use(Quasar, {components})
-  const routes = [{ path: '/Index', component: Index }]
 
-  const router = new VueRouter({
-    routes
-  })
+  const callAuthenticate = jest.fn()
   
-  
-  const wrapper = mount(Index, {
-      parentComponent: MainLayout,
-      localVue, 
-      router,
-      // parentComponent: MainLayout
+  const wrapper = mount(SignInForm, {
+      localVue,
+      propsData: { callAuthenticate }
     })
 
-    console.log(wrapper.html())
+  console.log(wrapper.html())
 
   const vm = wrapper.vm
 
@@ -56,13 +50,13 @@ describe('Mount Quasar', () => {
   })
 
   it('triggers authenticate function when submit button is clicked', async () => {
-    // const authenticateMock = jest.fn()
-    const spy = jest.spyOn(vm, "authenticate")
-    // wrapper.setMethods({ authenticate: authenticateMock })
-    wrapper.find('button').trigger('click')
-    // await Vue.nextTick()
-    // expect(authenticateMock).toHaveBeenCalled()
-    expect(spy).toHaveBeenCalled()
+    wrapper.setMethods({ callAuthenticate:jest.fn() })
+    expect(wrapper.find('button').exists()).toBe(true)
+    const submitButton = wrapper.find('button')
+    submitButton.trigger('click')
+    await flushPromises()
+    expect(wrapper.vm.callAuthenticate).toHaveBeenCalledTimes(1)
   })
  
 })
+
