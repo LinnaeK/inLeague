@@ -3,9 +3,9 @@
         <template>
   <div class="q-pa-md">
     <div class="q-gutter-y-md column" style="max-width: 800px">
-      <div>We got a {{ $store.state.status }} error:</div>
+      <div>We got an {{ $store.getters.status }} error:</div>
       <ul>
-        <li style="list-style: none" v-for="error in $store.state.error" :key="error">{{ error }}</li>
+        <li style="list-style: none" v-for="error in $store.getters.error" :key="error">{{ error }}</li>
       </ul>
     </div>
   </div>

@@ -5,7 +5,9 @@
 </template>
 
 <script>
+import store from './store/store'
 export default {
-  name: 'App'
+  name: 'App',
+  store
 }
 </script>

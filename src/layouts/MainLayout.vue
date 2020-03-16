@@ -18,8 +18,11 @@
 
 <script>
 
+import store from '../store/store'
+
 export default {
   name: 'MainLayout',
+  store,
 
   data () {
     return {

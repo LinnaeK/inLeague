@@ -4,7 +4,7 @@
   <div class="q-pa-md">
     <div class="q-gutter-y-md column" style="max-width: 800px">
       <div>We got a Connection Error!</div>
-      <div>{{ $store.state.status }}</div>
+      <div>{{ $store.getters.status }}</div>
     </div>
   </div>
     </template>

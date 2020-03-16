@@ -39,7 +39,7 @@
 import store from '../store/store'
 import { required, minLength, email } from 'vuelidate/lib/validators'
 import { hasLetter, hasNumber } from '../validators'
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'SignInForm',
@@ -63,14 +63,24 @@ export default {
       minLength: minLength(5)
     }
   },
-  methods: {
+  computed: {
     ...mapActions([
       'authenticate'
     ]),
+    ...mapState([
+      'status'
+    ])
+  },
+  methods: {
     callAuthenticate: function () {
       this.errors = this.$v.$anyError
       console.log('in callAuthenticate', this.error)
+      console.log('status', this.status)
       if (!this.errors) {
+        store.commit('status', '')
+        store.commit('error', '')
+        store.commit('jwt', '')
+        store.commit('userData', '')
         store.dispatch('authenticate', {
           username: this.username,
           password: this.password,
@@ -80,8 +90,8 @@ export default {
             this.$router.push('home')
           })
           .catch(response => {
-            console.log('in catch', store.getters.status)
-            if (store.getters.status && store.getters.status < 500) {
+            console.log('in catch', this.$store.getters.status)
+            if (this.$store.getters.status && this.$store.getters.status < 500) {
               this.$router.push('error')
             } else {
               this.$router.push('connectionerror')
