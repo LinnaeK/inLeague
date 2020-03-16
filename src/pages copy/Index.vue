@@ -1,13 +1,15 @@
 <template>
+  <q-page class="flex flex-center">
+        <template>
   <div class="q-pa-md">
     <div class="q-gutter-y-md column" style="max-width: 800px">
 
       <div class="form-group" :class="{ 'form-group--error': $v.username.$error }">
-        <q-input color="primary" filled label="Username" class="form__input" v-model.trim="$v.username.$model" data-username>
-          <template v-if="username" v-slot:append>
-            <q-icon name="cancel" @click.stop="username = null" class="cursor-pointer" />
-          </template>
-        </q-input>
+    <q-input color="primary" filled label="Username" class="form__input" v-model.trim="$v.username.$model" data-username>
+        <template v-if="username" v-slot:append>
+          <q-icon name="cancel" @click.stop="username = null" class="cursor-pointer" />
+        </template>
+      </q-input>
       </div>
       <div v-if="errors">
         <div class="error" v-if="!$v.username.required">Username is required</div>
@@ -15,11 +17,11 @@
       </div>
 
       <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
-        <q-input color="primary" filled v-model="password" label="Password" class="form__input" v-model.trim="$v.password.$model" data-input>
-          <template v-if="password" v-slot:append>
-            <q-icon name="cancel" @click.stop="password = null" class="cursor-pointer" />
-          </template>
-        </q-input>
+      <q-input color="primary" filled v-model="password" label="Password" class="form__input" v-model.trim="$v.password.$model" data-input>
+        <template v-if="password" v-slot:append>
+          <q-icon name="cancel" @click.stop="password = null" class="cursor-pointer" />
+        </template>
+      </q-input>
       </div>
 
       <div v-if="errors">
@@ -29,10 +31,12 @@
         <div class="error" v-if="!$v.password.hasNumber">Password must contain at least 1 number</div>
       </div>
 
-      <q-btn color="primary" label="Submit" @click="callAuthenticate" data-btn ref="submitBtn"/>
+      <q-btn color="primary" label="Submit" @click="callAuthenticate" data-btn/>
 
     </div>
   </div>
+    </template>
+  </q-page>
 </template>
 
 <script>
@@ -42,7 +46,7 @@ import { hasLetter, hasNumber } from '../validators'
 import { mapActions } from 'vuex'
 
 export default {
-  name: 'SignInForm',
+  name: 'PageIndex',
   store,
   data () {
     return {
