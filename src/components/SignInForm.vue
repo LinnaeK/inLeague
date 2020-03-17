@@ -15,7 +15,7 @@
       </div>
 
       <div class="form-group" :class="{ 'form-group--error': $v.password.$error }">
-        <q-input color="primary" filled v-model="password" label="Password" class="form__input" v-model.trim="$v.password.$model" data-input>
+        <q-input color="primary" filled v-model="password" label="Password" class="form__input" v-model.trim="$v.password.$model" data-password>
           <template v-if="password" v-slot:append>
             <q-icon name="cancel" @click.stop="password = null" class="cursor-pointer" />
           </template>

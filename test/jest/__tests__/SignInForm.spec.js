@@ -37,8 +37,6 @@ describe('Mount Quasar', () => {
       propsData: { callAuthenticate }
     })
 
-  console.log(wrapper.html())
-
   const vm = wrapper.vm
 
   it('passes the sanity check and creates a wrapper', () => {
