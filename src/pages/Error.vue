@@ -1,22 +1,17 @@
 <template>
   <q-page class="flex flex-center">
-        <template>
-  <div class="q-pa-md">
-    <div class="q-gutter-y-md column" style="max-width: 800px">
-      <div>We got an {{ $store.getters.status }} error:</div>
-      <ul>
-        <li style="list-style: none" v-for="error in $store.getters.error" :key="error">{{ error }}</li>
-      </ul>
-    </div>
-  </div>
-    </template>
+        <Error />
   </q-page>
 </template>
 
 <script>
 import store from '../store/store'
+import Error from '../components/Error'
 export default {
   name: 'LoggedIn',
-  store
+  store,
+  components: {
+    Error
+  }
 }
 </script>
