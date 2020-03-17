@@ -64,18 +64,16 @@ export default {
     }
   },
   computed: {
-    ...mapActions([
-      'authenticate'
-    ]),
     ...mapState([
       'status'
     ])
   },
   methods: {
+    ...mapActions([
+      'authenticate'
+    ]),
     callAuthenticate: function () {
       this.errors = this.$v.$anyError
-      console.log('in callAuthenticate', this.error)
-      console.log('status', this.status)
       if (!this.errors) {
         store.commit('status', '')
         store.commit('error', '')
@@ -90,8 +88,7 @@ export default {
             this.$router.push('home')
           })
           .catch(response => {
-            console.log('in catch', this.$store.getters.status)
-            if (this.$store.getters.status && this.$store.getters.status < 500) {
+             if (this.$store.getters.status && this.$store.getters.status < 500) {
               this.$router.push('error')
             } else {
               this.$router.push('connectionerror')

@@ -8,7 +8,7 @@
 import SignInForm from '../components/SignInForm'
 
 export default {
-  name: 'PageIndex',
+  name: 'IndexPage',
 
   components: {
     SignInForm

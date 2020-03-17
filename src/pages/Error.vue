@@ -8,7 +8,7 @@
 import store from '../store/store'
 import Error from '../components/Error'
 export default {
-  name: 'LoggedIn',
+  name: 'ErrorPage',
   store,
   components: {
     Error
