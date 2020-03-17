@@ -62,7 +62,7 @@ const store = new Vuex.Store({
               .catch((error) => {
                 console.log(error)
                 if (error.response && error.response.status < 500) {
-                  console.log('less than 500', error.response.data.messages)
+                  console.log('less than 500', JSON.stringify(error))
                   this.dispatch('extractError', error.response)
                   reject()
                 } else {
