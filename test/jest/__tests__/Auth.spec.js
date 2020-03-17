@@ -1,18 +1,14 @@
-import Vue from "vue";
-import Vuex from 'vuex'
 import flushPromises from "flush-promises"
 import store from '../../../src/store/store'
-import * as All from 'quasar'
 import mockAxios from "axios";
 
-console.log(store._actions.authenticate)
 describe('authenticated', () => {
 
   it('is an action in the store', () => {
     expect(store._actions.authenticate).toBeDefined()
   })
 
-  it("fetches data from the inleague API", async () => {
+  it("fetches user data from the inleague API and stores it in the store", async () => {
     mockAxios.post.mockImplementationOnce(() =>
     Promise.resolve({
       data: {

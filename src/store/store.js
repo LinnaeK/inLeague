@@ -70,6 +70,8 @@ const store = new Vuex.Store({
                     commit('error', error)
                     commit('status', error.response.status)
                   }
+                  console.log('error.data', error.data)
+                  console.log('error', error)
                   console.log('500+ error', JSON.stringify(error))
                   reject()
                 }

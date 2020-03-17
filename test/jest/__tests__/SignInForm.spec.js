@@ -6,15 +6,13 @@
 import Vue from "vue";
 import Vuelidate from "vuelidate";
 import flushPromises from "flush-promises"
-import VueRouter from 'vue-router'
-// import sinon from 'sinon'
 
 Vue.use(Vuelidate);
 import { mount, createLocalVue, shallowMount } from '@vue/test-utils'
 import SignInForm from '../../../src/components/SignInForm'
 import * as All from 'quasar'
-// import langEn from 'quasar/lang/en-us' // change to any language you wish! => this breaks wallaby :(
-const { Quasar, date } = All
+
+const { Quasar } = All
 
 const components = Object.keys(All).reduce((object, key) => {
   const val = All[key]
@@ -25,8 +23,6 @@ const components = Object.keys(All).reduce((object, key) => {
 }, {})
 
 describe('Mount Quasar', () => {
-  // let mockedAuthenticate = jest.fn()
-  // Index.methods.authenticate = mockedAuthenticate
   const localVue = createLocalVue()
   localVue.use(Quasar, {components})
 
