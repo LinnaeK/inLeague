@@ -88,7 +88,7 @@ export default {
             this.$router.push('home')
           })
           .catch(response => {
-             if (this.$store.getters.status && this.$store.getters.status < 500) {
+            if (this.$store.getters.status && this.$store.getters.status < 500) {
               this.$router.push('error')
             } else {
               this.$router.push('connectionerror')
